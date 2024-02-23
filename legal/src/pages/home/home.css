@@ -1,0 +1,8 @@
+.button{
+    background-color: blue;
+    border-radius: 10px;
+
+    &:hover{
+        background-color: blueviolet;
+    }
+}
