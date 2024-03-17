@@ -6,7 +6,7 @@ import './home.css'
 const Home = () => {
     const [n, setn] = useState(0)
     const [see, setSee] = useState(false)
-    const [data, setDado] = useState('123')
+    const [data, setDado] = useState(0)
 
     const geretData = () => {
         let dados = Math.floor(Math.random()*6) + 1
@@ -29,7 +29,7 @@ console.log(data)
                 
                 <div>
                 {see &&
-                <img src="https://ih1.redbubble.net/image.3966742997.6190/fpp,small,lustre,wall_texture,product,750x1000.jpg" alt="dog" />}
+                <img width="250" src="https://ih1.redbubble.net/image.3966742997.6190/fpp,small,lustre,wall_texture,product,750x1000.jpg" alt="dog" />}
                 </div>
             </h1>
 
