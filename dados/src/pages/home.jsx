@@ -12,13 +12,14 @@ export default function Home() {
       </div>
     );
   }
-
+  const [contador, setcontador] = useState(0)
   const [vitoriaj1, setVitoriaj1] = useState(0)
   const [vitoriaj2, setVitoriaj2] = useState(0)
 
   const [dado, setDado] = useState();
   const [dado2, setDado2] = useState();
   const [play, setPlay] = useState(true);
+  const [play2, setPlay2] = useState(false);
 
   const ganhador = (valor) =>{
     if(dado>valor){setVitoriaj1(vitoriaj1+1)}
@@ -29,15 +30,47 @@ export default function Home() {
     const valor = Math.floor(Math.random() * 6) + 1;
     setDado(valor);
     setPlay(!play);
+    setPlay2(!play2);
+    setcontador(contador+1)
+    
   }
 
   const handleClickJogar2 = () => {
     const valor = Math.floor(Math.random() * 6) + 1;
     setDado2(valor);
     setPlay(!play);
+    setPlay2(!play2);
     ganhador(valor);
+    setcontador(contador+1)
+    if(contador == 9){
+      setPlay(false)
+      setPlay2(false)
+    }
   }
-  
+
+  const vitoria = () => {
+    if(contador == 10){
+      if(vitoriaj1 > vitoriaj2){
+        return "Jogador 1 Ganhou"
+      }
+      else if (vitoriaj2>vitoriaj1){
+        return("Jogador 2 Ganhou")
+      }
+      else return "Empate"
+    }
+    else return false
+  }
+
+  const resetar = () => {
+    setcontador(0)
+    setVitoriaj1(0)
+    setVitoriaj2(0)
+    setDado(0)
+    setDado2(0)
+    setPlay(true)
+    setPlay2(false)
+
+  }
   return (
     <div>
       <h1 style={{textAlign:"center"}}>Jogo de Dados</h1>
@@ -50,10 +83,11 @@ export default function Home() {
         <div style={{textAlign:"center"}}>
           <h2>Jogador 2</h2>
           <Dado valor={dado2} />
-          {!play ? <button onClick={handleClickJogar2}>Jogar Dado</button> : <p>Espere sua vez</p>}
+          {play2 ? <button onClick={handleClickJogar2}>Jogar Dado</button> : <p>Espere sua vez</p>}
         </div>
         <Placar pontosJogador1={vitoriaj1} pontosJogador2={vitoriaj2}/>
       </div>
+      {vitoria() ? <div><h2>{vitoria()}</h2><button onClick={resetar}>resetar</button></div> : <h2></h2>}
 
     </div>
   );
