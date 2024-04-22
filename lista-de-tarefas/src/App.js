@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
+import './App.css'
 
-// Tipos de funções
+// Tipos de ações
 const ADD_TASK = 'ADD_TASK';
 const REMOVE_TASK = 'REMOVE_TASK';
 const UPDATE_TASK = 'UPDATE_TASK';
@@ -49,17 +50,20 @@ const AddTask = ({ dispatch }) => {
   };
 
   return (
-    <div>
+    <div className='CaixaTarefa'>
+      <h1>Criar tarefa</h1>
       <input
         type="text"
         value={descricao}
         onChange={e => setDescricao(e.target.value)}
         placeholder="Descrição da tarefa"
+        className='DescricaoTarefa'
       />
       <input
         type="date"
         value={dataConclusao}
         onChange={e => setDataConclusao(e.target.value)}
+        className='DataConclusao'
       />
       <button onClick={handleAddTask}>Adicionar Tarefa</button>
     </div>
@@ -79,20 +83,18 @@ const TaskList = ({ tasks, dispatch }) => {
   return (
     <div>
       <h2>Lista de Tarefas</h2>
-      <ul>
         {tasks.map((task, index) => (
-          <li key={index}>
+          <div className='Lista'>
+            <p>{task.descricao}</p>
+            <p>Data de Conclusão: {task.dataConclusao.toLocaleDateString()}</p>
             <input
-              type="checkbox"
-              checked={task.concluida}
-              onChange={() => handleToggleTask(task)}
-            />
-            <span>{task.descricao}</span>
-            <span> - Data de Conclusão: {task.dataConclusao.toLocaleDateString()}</span>
-            <button onClick={() => handleRemoveTask(task)}>Remover</button>
-          </li>
+                type="checkbox"
+                checked={task.concluida}
+                onChange={() => handleToggleTask(task)}
+              />
+              <button className='remove' onClick={() => handleRemoveTask(task)}>Remover</button>
+            </div>
         ))}
-      </ul>
     </div>
   );
 };
@@ -102,7 +104,7 @@ const App = () => {
   const [state, dispatch] = useReducer(taskReducer, { tasks: [] });
 
   return (
-    <div>
+    <div className='body'>
       <AddTask dispatch={dispatch} />
       <TaskList tasks={state.tasks} dispatch={dispatch} />
     </div>

@@ -1,38 +1,43 @@
-.App {
+
+
+h1{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.CaixaTarefa{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.DescricaoTarefa{
+  font-size: large;
+  height: 100px;
+  text-align: center;
+  
+}
+.DataConclusao{
+  height: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Lista{
+  display: flex;
+  background-color: bisque;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+p{
+  margin-right: 20px;
 }
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #999;
+  border-radius: 4px;
+  padding: 2px;
+  background-color: #fff;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
